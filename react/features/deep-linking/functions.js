@@ -1,5 +1,7 @@
 /* global interfaceConfig */
 
+import uuid from 'uuid';
+
 import { URI_PROTOCOL_PATTERN } from '../base/util';
 import { isMobileBrowser } from '../base/environment/utils';
 import { Platform } from '../base/react';
@@ -73,7 +75,10 @@ export function getDeepLinkingPage(state) {
         return Promise.resolve();
     }
 
-    return _openDesktopApp(state).then(
+    return _openDesktopApp({
+        state,
+        uuid: uuid.v4()
+    }).then(
         // eslint-disable-next-line no-confusing-arrow
         result => result ? DeepLinkingDesktopPage : undefined);
 }
@@ -86,5 +91,8 @@ export function getDeepLinkingPage(state) {
  * with false otherwise.
  */
 export function openDesktopApp(state) {
-    return _openDesktopApp(state);
+    return _openDesktopApp({
+        state,
+        uuid: uuid.v4()
+    });
 }
