@@ -140,6 +140,7 @@
   "scripts": {
     "lint": "eslint . && flow",
     "postinstall": "jetify",
+    "start": "make dev",
     "validate": "npm ls"
   },
   "pre-commit": [
